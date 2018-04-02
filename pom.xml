@@ -30,6 +30,7 @@
     <name>kafka-connect-influxdb</name>
     <url>https://github.com/jcustenborder/kafka-connect-influxdb</url>
     <inceptionYear>2017</inceptionYear>
+    <description>This plugin has both a source and a sink for writing data to InfluxDB. The Sink Connector will process the data and batch the payload based on the host. The Source connector will emulate an InfluxDB endpoint and allow a standard client to write data.</description>
     <licenses>
         <license>
             <name>Apache License 2.0</name>
@@ -74,4 +75,39 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.confluent</groupId>
+                <artifactId>kafka-connect-maven-plugin</artifactId>
+                <version>0.9.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>kafka-connect</goal>
+                        </goals>
+                        <configuration>
+                            <ownerUsername>jcustenborder</ownerUsername>
+                            <confluentControlCenterIntegration>true</confluentControlCenterIntegration>
+                            <documentationUrl>https://jcustenborder.github.io/kafka-connect-documentation/</documentationUrl>
+                            <ownerName>Jeremy Custenborder</ownerName>
+                            <dockerNamespace>jcustenborder</dockerNamespace>
+                            <dockerName>kafka-connect-docker</dockerName>
+                            <pluginTypes>
+                                <pluginType>sink</pluginType>
+                                <pluginType>source</pluginType>
+                            </pluginTypes>
+                            <tags>
+                                <tag>Time Series</tag>
+                                <tag>Database</tag>
+                            </tags>
+                            <title>Kafka Connect InfluxDB</title>
+                            <supportUrl>${pom.issueManagement.url}</supportUrl>
+                            <supportSummary>Support provided through community involvement.</supportSummary>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
